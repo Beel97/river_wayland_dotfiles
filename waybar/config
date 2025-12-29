@@ -1,0 +1,57 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 30,
+  "modules-left": [
+    "river/tags"
+  ],
+  "modules-center": [
+    "custom/swaync"
+  ],
+  "modules-right": [
+    "clock",
+    "battery"
+  ],
+  "river/tags": {
+    "num-tags": 9,
+    "tag-labels": [
+      "一",
+      "二",
+      "三",
+      "四",
+      "五",
+      "六",
+      "七",
+      "八",
+      "九"
+    ]
+  },
+  "battery": {
+    "format": "{icon}  {capacity}%",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "tooltip": true
+  },
+  "clock": {
+    "format": "{:%H:%M}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+  },
+  "custom/swaync": {
+    "format": " {}",
+    "return-type": "json",
+    "exec": "swaync-client -c | awk '{print \"{\\\"text\\\":\\\"\"$1\"\\\"}\"}'",
+    "on-click": "sleep 0.1 && swaync-client -t -sw",
+    "on-click-right": "swaync-client -C",
+    "interval": 5,
+    "tooltip": true
+  }
+}

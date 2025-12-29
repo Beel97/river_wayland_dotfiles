@@ -1,0 +1,112 @@
+[config]
+# If set to enabled, it will check for updates when you run the matugen command, notifying you that an update is avaiable.
+# WARNING: Matugen needs to be compiled with the `update-informer` feature for this to work.
+version_check = false
+
+# The color which should be used as the source_color if no good color was found from an image.
+# Can be defined in any css format.
+# The cli flag will override this if used.
+fallback_color = "#ffbf9b"
+
+# Enables caching which will cache the colorscheme, custom colors, etc. into a cache folder located in
+# Windows: C:\Users\user\AppData\Roaming\InioX\matugen\cache\images\<file>
+# Linux: $XDG_CACHE_HOME/matugen/<file> or $HOME/.cache/matugen/images/<file>
+# MacOS: $HOME/Library/Caches/matugen/images/<file>
+# The file follows this naming: <image_name>.<image_extension>.<image_hash>.json
+# For example: testimage.png.0cfd2d624b3d09bf6246b7be9ca79e207e7aa1189d961d44949628b99811bb9d.json
+# You can modify the cache and it will then be loaded when using the same image.
+# The colors are defined using the #RRGGBBAA format.
+caching = false
+
+# Changing the syntax
+# Expr is for keywords like {{ <keyword> }}
+expr_prefix = "{{"
+expr_postfix = "}}"
+
+# Block is for stuff like for loops etc.
+block_prefix = "<*"
+block_postfix = "*>"
+
+# Imports json files just like `--import-json` does.
+# Relative paths will be resolved from the path `config.toml` is in.
+#import_json_files = ["./custom3.json"]
+
+[config.wallpaper]
+# Whether to set the wallpaper or not
+set = true
+
+# The base command to run for applying the wallpaper, shouldn't have spaces in it.
+command = "swww"
+
+# The arguments that will be provided to the command.
+# Keywords like {{ mode }} or anything that works inside of hooks doesn't work here.
+# The last argument will be the image path.
+arguments = ["img", "--transition-type", "center"]
+
+# For example, killing the wallpaper daemon. Usage is like a normal hook.
+# pre_hook = ""
+
+# For testing of the `--continue-on-error` flag
+# [templates.ishoulderror]
+# Relative paths will be resolved from the path `config.toml` is in.
+# input_path = "./error-testing.txt"
+# output_path = "./a/error-testing.txt"
+
+# This will use a different input path depending on what mode you use.
+# input_path_modes = { dark = "./colors.whatever-extension", light = "./colors.whatever-extension" }
+
+# This will compare all of the colors inside the array with the color you set as `compare_to`, and returns the closest color to it.
+# You can then use `{{closest_color}}` inside templates and hooks.
+colors_to_compare = [
+    { name = "black", color = "#41444B" },
+    { name = "red", color = "#AF3E3E" },
+    { name = "maroon", color = "#9F5255" },
+    { name = "yellow", color = "#FFA239" },
+    { name = "olive", color = "#C5D89D" },
+    { name = "lime", color = "#9CAB84" },
+    { name = "green", color = "#89986D" },
+    { name = "aqua", color = "#AAC4F5" },
+    { name = "teal", color = "#008080" },
+    { name = "blue", color = "#9ECAD6" },
+    { name = "navy", color = "#5D688A" },
+    { name = "fuchsia", color = "#9B7EBD" },
+    { name = "purple", color = "#7F55B1" },
+]
+compare_to = "{{colors.primary.default.hex}}"
+
+# Runs before the template is exported. You can use keywords here.
+# If you want the command to be async, add an & symbol to the end of the command on unix.
+pre_hook = 'echo "source color {{colors.source_color.default.hex}}, source image {{image}}, closest color {{closest_color}}"'
+# Runs after the template is exported. You can use keywords here.
+# If you want the command to be async, add an & symbol to the end of the command on unix.
+post_hook = 'echo "after gen"'
+
+# For overriding the prefix for a specific template only
+expr_prefix = "{{"
+expr_postfix = "}}"
+
+# Only hex values
+# https://m3.material.io/styles/color/advanced/adjust-existing-colors#1cc12e43-237b-45b9-8fe0-9a3549c1f61e
+# Blend is set to true by default. 
+#[config.custom_colors]
+#red = "#ff0000"
+#blue = { color = "#0000ff", blend = false }
+#green = { color = "#00FF00", blend = false }
+
+[templates]
+# NOTE: prefer '' over "" for paths, avoids escaping.
+# template: A RELATIVE path that points to `~/.config/wallust/template` (depends on platform)
+# target: ABSOLUTE path in which to place a file with generated templated values.
+# ¡ If either one is a directory, then both SHOULD be one. !
+# zathura = { template = 'zathura', target = '~/.config/zathura/zathurarc' }
+alacritty = {input_path = 'templates/alacritty.toml', output_path = '~/.config/alacritty/matugen_colors_alacritty.toml'}
+starship = {input_path = 'templates/starship.toml', output_path = '~/.config/starship/starship.toml'}
+waybar = {input_path = 'templates/waybar.css', output_path = '~/.config/waybar/matugen_colors_waybar.css'}
+river = {input_path = 'templates/river-colors', output_path = '~/.config/river/matugen_colors_river.sh',post_hook="~/.config/river/init"}
+wofi = {input_path = 'templates/wofi.css', output_path = '~/.config/wofi/style.css'}
+qutebrowser = {input_path = 'templates/qutebrowser-colors.py', output_path = '~/.config/qutebrowser/matugen_colors_qutebrowser.py', post_hook="pgrep -x qutebrowser && qutebrowser :config-source"}
+superfile = {input_path = 'templates/superfile.toml', output_path = '~/.config/superfile/theme/matugen_colors_superfile.toml'}
+#dunst = {input_path = 'templates/dunstrc', output_path = '~/.config/dunst/dunstrc',post_command = "killall dunst; dunst &"}
+
+#zellij = {input_path = 'templates/zellij-theme.kdl', output_path = '~/.config/zellij/themes/default.kdl'}
+

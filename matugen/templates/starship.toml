@@ -1,0 +1,124 @@
+palette = "matugen"
+add_newline = true
+command_timeout = 1000
+
+format = """
+$character\
+[](fg:secondary_fixed bg:on_tertiary)\
+[█](fg:on_tertiary bg:on_tertriary)\
+$directory\
+[█](fg:on_tertiary)\
+[$git_branch\
+$git_state\
+$git_status](bold bg:black fg:white)\
+$fill\
+$cmd_duration\
+[](fg:red)\
+[ ](fg:black bg:red)\
+$username\
+[](fg:green bg:bright-black)\
+[󰌽 ](fg:green bg:black inverted)\
+$hostname\
+$line_break\
+[‎]()"""
+
+[palettes.matugen]
+bg = "{{colors.surface.default.hex}}"
+error = "{{colors.error.default.hex}}"
+error_container = "{{colors.error_container.default.hex}}"
+on_error = "{{colors.on_error.default.hex}}"
+on_error_container = "{{colors.on_error_container.default.hex}}"
+on_primary = "{{colors.on_primary.default.hex}}"
+on_primary_container = "{{colors.on_primary_container.default.hex}}"
+on_tertiary = "{{colors.on_tertiary.default.hex}}"
+primary = "{{colors.primary.default.hex}}"
+primary_container= "{{colors.primary_container.default.hex}}"
+secondary = "{{colors.secondary.default.hex}}"
+secondary_fixed = "{{colors.secondary_fixed.default.hex}}"
+tertiary = "{{colors.tertiary.default.hex}}"
+surface = "{{colors.surface.default.hex}}"
+on_surface = "{{colors.on_surface.default.hex}}"
+
+
+[character]
+format = "$symbol"
+error_symbol = "[█](fg:error_container bg:error_container)[ ERROR](fg:on_error_container bg:error_container)[](fg:error_container bg:secondary_fixed)"
+success_symbol = "[█](fg:primary_container bg:primary_container)[ PROMPT](fg:on_primary_container bg:primary_container)[](fg:primary_container bg:secondary_fixed)"
+
+[fill]
+symbol = ' '
+
+[package]
+disabled = false
+
+[cmd_duration]
+min_time = 1000
+show_milliseconds = false
+disabled = false
+format="[󰞌 $duration ]($style)"
+style="bold bg:black"
+
+[directory]
+truncation_length = 5
+format = "[󰉋 $path]($style)[$lock_symbol]($lock_style)"
+style = "bold fg:tertiary bg:on_tertiary"
+read_only = "🔒"
+read_only_style= "bold white"
+
+[username]
+show_always = true
+style_user = "bg:bright-black"
+style_root = "bg:bright-black"
+format = '[ $user ]($style)'
+
+[hostname]
+format = "[ $hostname ]($style)"
+ssh_only = false
+trim_at = ".companyname.com"
+disabled = false
+style = "fg:green bg:bright-black"
+
+[git_commit]
+commit_hash_length = 8
+style = "bold white"
+
+[status]
+style = "bg:transparent"
+symbol = "💥 "
+format = '($style)'
+disabled = false
+
+[git_branch]
+format = " 󰘬 $branch"
+style = "bold fg:on_surface bg:surface"
+
+[git_status]
+format = " $conflicted$untracked$modified$staged$renamed$deleted$ahead_behind$stashed"
+style = "cyan"
+conflicted = "󰇸"
+untracked = "󱚠"
+modified = ""
+staged = ""
+renamed = "󰑕"
+deleted = ""
+stashed = "≡"
+
+[git_state]
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+style = "cyan"
+
+[nodejs]
+symbol = ""
+style = "bg:green"
+format = '[ $symbol ($version) ]($style)'
+
+[rust]
+symbol = ""
+style = "bg:red"
+format = '[ $symbol ($version) ]($style)'
+
+[python]
+symbol = ""
+style = "yellow bold"
+format = '[ $symbol ($version) ]($style)'
+

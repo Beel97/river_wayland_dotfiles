@@ -1,0 +1,26 @@
+[global]
+    frame_width = 2
+    separator_height = 3
+    padding = 8
+    follow = mouse
+    # Usamos el color de borde general del sistema
+    frame_color = "{{colors.outline.default.hex}}"
+    font = JetBrains Mono 10
+
+[urgency_low]
+    # Un tono sutil que no destaque mucho
+    background = "{{colors.surface_container_low.default.hex}}"
+    foreground = "{{colors.on_surface_variant.default.hex}}"
+    frame_color = "{{colors.outline_variant.default.hex}}"
+
+[urgency_normal]
+    # El color principal para notificaciones estándar
+    background = "{{colors.secondary_container.default.hex}}"
+    foreground = "{{colors.on_secondary_container.default.hex}}"
+    frame_color = "{{colors.primary.default.hex}}"
+
+[urgency_critical]
+    # Rojo/Naranja de error según Material You
+    background = "{{colors.error.default.hex}}"
+    foreground = "{{colors.on_error.default.hex}}"
+    frame_color = "{{colors.error_container.default.hex}}"

@@ -1,0 +1,12 @@
+mode=drun
+allow_images=true
+image_size=18
+term=alacritty
+width=100%
+height=34
+lines=1
+location=top
+layer=overlay
+no_scrollbar=true
+orientation=horizontal
+prompt=  

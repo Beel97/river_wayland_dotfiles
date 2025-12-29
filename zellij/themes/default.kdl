@@ -1,0 +1,31 @@
+themes {
+  default {
+    fg "#E7EAE1"
+    bg "#484E4F"
+    black "#484E4F"
+    red "#5D5767"
+    green "#6D7856"
+    yellow "#A89089"
+    blue "#C8A927"
+    magenta "#76B2DE"
+    cyan "#DFE5D4"
+    white "#E7EAE1"
+    orange "#E7EAE1"
+
+    bright_black "#A1A39E"
+    bright_red "#5D5767"
+    bright_green "#6D7856"
+    bright_yellow "#A89089"
+    bright_blue "#C8A927"
+    bright_magenta "#76B2DE"
+    bright_cyan "#DFE5D4"
+    bright_white "#E7EAE1"
+
+    status-bar-bg "#484E4F"
+    status-bar-fg "#E7EAE1"
+    tab-bar-bg "#484E4F"
+    tab-bar-fg "#E7EAE1"
+    tab-bar-active-bg "#C8A927"
+    tab-bar-active-fg "#E7EAE1"
+  }
+}

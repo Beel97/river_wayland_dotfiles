@@ -1,0 +1,43 @@
+[general]
+import = [
+  "matugen_colors_alacritty.toml",
+]
+live_config_reload = true
+ipc_socket = true
+
+[env]
+TERM = "xterm-256color"
+
+[window]
+dynamic_title = true
+blur = true
+decorations = "Full"
+dynamic_padding = true
+opacity = 0.8
+padding = { x = 10, y = 10 }
+
+[bell]
+animation = "Ease"
+duration = 3
+
+[font]
+size = 11.0
+builtin_box_drawing = true
+
+[font.normal]
+family = "FiraCode Nerd Font Mono"
+style = "SemiBold"
+
+[font.bold]
+family = "FiraCode Nerd Font Mono"
+style = "Bold"
+
+[font.italic]
+family = "FiraCode Nerd Font Mono"
+style = "Italic"
+
+
+[cursor]
+style = { shape="Block" , blinking="On" }
+thickness = 0.2
+unfocused_hollow = true

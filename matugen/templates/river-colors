@@ -1,0 +1,4 @@
+# Template de wallust para river
+# Definimos variables
+riverctl border-color-focused "0x{{colors.tertiary.default.hex_stripped}}"
+riverctl border-color-unfocused "0x{{colors.surface_container_highest.default.hex_stripped}}"

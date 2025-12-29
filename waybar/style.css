@@ -1,0 +1,86 @@
+/* =============================================================================
+   1. RESET DE LA BARRA (Para que sea transparente y no blanca)
+   ============================================================================= */
+@import "matugen_colors_waybar.css";
+
+#waybar {
+    background-color: transparent; /* Quita el fondo blanco */
+    border: none;
+    margin: 0;
+}
+
+/* Contenedor principal de los módulos */
+.modules-left, .modules-center, .modules-right {
+    background: transparent;
+}
+
+/* =============================================================================
+   2. LÓGICA DE TAGS (Tu estado oculto/visible)
+   ============================================================================= */
+
+/* Estado "Oculto" */
+#tags button {
+    min-width: 0;
+    padding: 0;
+    margin: 0;
+    font-size: 0;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    transition: all 0.3s ease; /* Transición suave al aparecer */
+}
+
+/* Estado Visible (Solo Occupied y Focused) con Estilo Pill */
+#tags button.occupied,
+#tags button.focused {
+    /* Reducimos el ancho mínimo de 25px a 18px */
+    min-width: 18px; 
+    
+    /* Reducimos el padding lateral de 12px a 8px */
+    padding: 0 8px;
+    
+    font-size: 13px; /* Bajamos un punto la fuente para que quepa bien */
+    margin: 4px 2px;
+    border-radius: 12px; /* Radio ligeramente menor para acompañar el tamaño */
+    color: @on_background;
+    background-color: @surface_container_high;
+    transition: all 0.2s ease-in-out;
+}
+
+/* El estilo de Focused se mantiene, solo se adapta al nuevo tamaño */
+#tags button.focused {
+    background-color: @primary_container;
+    color: @primary_fixed;
+    box-shadow: inset 0 -2px @primary_fixed_dim; /* Sombra un poco más fina */
+}
+
+#tags button.occupied {
+    color: @secondary_fixed_dim;
+}
+
+/* =============================================================================
+   3. ESTILO PILL PARA EL RESTO DE MÓDULOS
+   ============================================================================= */
+
+/* Aplicamos el estilo de píldora a cada módulo individual */
+#clock,
+#battery,
+#pulseaudio,
+#network,
+#cpu,
+#memory,
+#custom-music,
+#tray {
+    background-color: @surface_container_high;
+    color: @inverse_surface;
+    border-radius: 15px;
+    padding: 2px 12px;
+    margin: 4px 4px;
+    border: 1px solid @outline_variant;
+}
+
+/* Acento especial para el reloj para que resalte */
+#clock {
+    color: @primary;
+    font-weight: bold;
+}

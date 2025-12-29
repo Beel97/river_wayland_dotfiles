@@ -1,0 +1,9 @@
+matugen_colors*
+wofi/style.css
+qutebrowser/__pycache__
+qutebrowser/bookmarks
+qutebrowser/greasemonkey
+qutebrowser/qsettings
+qutebrowser/userscripts
+qutebrowser/quickmarks
+qutebrowser/autoconfig.yml
