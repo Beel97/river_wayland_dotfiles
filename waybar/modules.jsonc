@@ -1,0 +1,44 @@
+{
+  // Módulo para los tags/workspaces del compositor River
+  "river/tags": {
+    "num-tags": 9,
+    "tag-labels": [
+      "一", "二", "三", "四", "五", "六", "七", "八", "九"
+    ]
+  },
+
+  // Módulo de la batería
+  "battery": {
+    "format": "{icon}  {capacity}%",
+    "format-icons": [ "", "", "", "", "" ],
+    "states": { "warning": 30, "critical": 15 },
+    "tooltip": true
+  },
+
+  // Módulo del reloj
+  "clock": {
+    "format": "{:%H:%M}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+  },
+
+  // Módulo para el centro de notificaciones SwayNC
+  "custom/swaync": {
+    "format": " {}",
+    "return-type": "json",
+    "exec": "swaync-client -c | awk '{if ($1 > 0) printf \"{\\\"text\\\":\\\"%s\\\", \\\"class\\\":\\\"has-notifications\\\"}\", $1; else printf \"{\\\"text\\\":\\\"%s\\\"}\", $1}'",
+    "on-click": "sleep 0.1 && swaync-client -t -sw",
+    "on-click-right": "swaync-client -C",
+    "interval": 5,
+    "tooltip": true
+  },
+
+  // Módulo personalizado para el volumen (usando amixer)
+  "custom/volume": {
+    "exec": "~/.config/waybar/scripts/volume.sh",
+    "return-type": "json",
+    "signal": 8,
+    "on-click": "amixer set Master toggle && pkill -RTMIN+8 waybar",
+    "on-scroll-up": "amixer set Master 5%+ && pkill -RTMIN+8 waybar",
+    "on-scroll-down": "amixer set Master 5%- && pkill -RTMIN+8 waybar"
+  }
+}
