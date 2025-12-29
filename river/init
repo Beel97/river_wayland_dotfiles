@@ -1,145 +1,95 @@
 #!/bin/sh
-# --- Colores (Nord Theme extraído de tu config.h) ---
-# River usa colores en formato 0xRRGGBBAA (Rojo, Verde, Azul, Alpha)
-~/.config/river/matugen_colors_river.sh
 
-riverctl border-width 4
-
-# --- Tecla Mod (Super) ---
+# --- Variables y Configuración General ---
 mod="Mod4"
 term="alacritty"
 common_scripts="$HOME/common_scripts"
-focus { mouse.move.cursor }
 
-# --- Atajos Básicos (Mapeo directo de tu keys[]) ---
+# Carga de colores y configuraciones iniciales
+~/.config/river/matugen_colors_river.sh
+riverctl border-width 4
+
+# --- Aplicaciones al Inicio (Autostart) ---
+riverctl spawn swww-daemon
+riverctl spawn "rivertile -view-padding 5 -outer-padding 5"
+
+if ! pgrep -x "waybar" > /dev/null; then
+    riverctl spawn "waybar"
+    riverctl spawn "swaync"
+else
+    riverctl spawn "killall -SIGUSR2 waybar"
+    riverctl spawn "killall swaync && swaync"
+fi
+
+# --- Comportamiento del Mouse ---
+riverctl focus-follows-cursor normal
+riverctl set-cursor-warp on-focus-change
+riverctl set-cursor-warp on-output-change
+
+# --- Controles Básicos del Gestor ---
 riverctl map normal $mod T spawn "$term"
 riverctl map normal $mod Q close
 riverctl map normal $mod+Shift C exit
 
-# Lanzadores (Tus scripts personalizados)
-# NOTA: Asegúrate de que estos scripts no usen dmenu/rofi de X11, sino wofi/fuzzel/bemenu
+# --- Lanzadores de Aplicaciones ---
 riverctl map normal $mod A spawn "$common_scripts/w_app_launcher.sh"
-riverctl map normal $mod B spawn "dwm_browser_launcher.sh"
-riverctl map normal $mod+Shift W spawn "dwm_wallpaper.sh"
+riverctl map normal $mod B spawn "$common_scripts/w_browser_launcher.sh"
+riverctl map normal $mod+Shift W spawn "$common_scripts/dwm_wallpaper.sh"
 riverctl map normal $mod BackSpace spawn "$common_scripts/w_logout_options.sh"
 
-# --- Gestión de Ventanas (Stack y Focus) ---
-# Equivalente a tu STACKKEYS con j/k
+# --- Gestión de Ventanas ---
 riverctl map normal $mod J focus-view next
 riverctl map normal $mod K focus-view previous
-
-# Equivalente a mover ventanas en el stack (Shift+j/k)
 riverctl map normal $mod+Shift J swap next
 riverctl map normal $mod+Shift K swap previous
-
-# Master Area (setmfact en dwm) - H y L
-riverctl map normal $mod H send-layout-cmd rivertile "main-ratio -0.05"
-riverctl map normal $mod L send-layout-cmd rivertile "main-ratio +0.05"
-
-# Zoom (Poner ventana en master)
 riverctl map normal $mod Return zoom
-
-# Fullscreen
 riverctl map normal $mod+Shift F toggle-fullscreen
-
-# Floating (Toggle floating)
 riverctl map normal $mod+Shift Space toggle-float
 
-# --- Tags (1-9) ---
-# River usa una máscara de bits (1, 2, 4, 8...).
-# Este bucle mapea las teclas 1-9 a los primeros 9 tags.
+# --- Gestión de Layouts (rivertile) ---
+riverctl default-layout rivertile
+riverctl map normal $mod H send-layout-cmd rivertile "main-ratio -0.05"
+riverctl map normal $mod L send-layout-cmd rivertile "main-ratio +0.05"
+riverctl map normal $mod Up send-layout-cmd rivertile "main-location top"
+riverctl map normal $mod Right send-layout-cmd rivertile "main-location right"
+riverctl map normal $mod Down send-layout-cmd rivertile "main-location bottom"
+riverctl map normal $mod Left send-layout-cmd rivertile "main-location left"
+
+# --- Gestión de Tags (Escritorios Virtuales) ---
 for i in $(seq 1 9); do
   tags=$((1 << (i - 1)))
   riverctl map normal $mod $i set-focused-tags $tags
   riverctl map normal $mod+Shift $i set-view-tags $tags
   riverctl map normal $mod+Control $i toggle-focused-tags $tags
   riverctl map normal $mod+Shift+Control $i toggle-view-tags $tags
-  riverctl map normal Mod4+Shift $i set-view-tags $tags
 done
 
-riverctl map normal Mod4 Tab focus-previous-tags
+# Mapeos para ver todos los tags
+riverctl map normal $mod 0 set-focused-tags 4294967295
+riverctl map normal $mod+Shift 0 set-view-tags 4294967295
 
-# --- Layouts y Gaps (Rivertile) ---
-# Aquí configuramos tus "vanitygaps".
-# DWM: gappih=5, gappiv=5 (inner), gappoh=5 (outer)
-riverctl default-layout rivertile
-riverctl spawn "rivertile -view-padding 5 -outer-padding 5"
+riverctl map normal $mod Tab focus-previous-tags
 
-# Cambiar posición del master (Monocle/Tile/etc se manejan diferente en river)
-riverctl map normal $mod Up send-layout-cmd rivertile "main-location top"
-riverctl map normal $mod Right send-layout-cmd rivertile "main-location right"
-riverctl map normal $mod Down send-layout-cmd rivertile "main-location bottom"
-riverctl map normal $mod Left send-layout-cmd rivertile "main-location left"
+# --- Control Multi-Monitor ---
+riverctl map normal $mod BracketLeft focus-output previous
+riverctl map normal $mod BracketRight focus-output next
+riverctl map normal $mod+Shift BracketLeft spawn "~/.config/river/scripts/send-to-output.sh previous"
+riverctl map normal $mod+Shift BracketRight spawn "~/.config/river/scripts/send-to-output.sh next"
 
-# --- Audio y Brillo (Reemplazando scripts si es necesario) ---
-# Tus comandos amixer y brightnessctl deberían funcionar igual en Wayland
+# --- Teclas de Hardware (Audio y Brillo) ---
 riverctl map normal None XF86AudioRaiseVolume spawn "amixer set Master 5%+ unmute"
 riverctl map normal None XF86AudioLowerVolume spawn "amixer set Master 5%- unmute"
 riverctl map normal None XF86AudioMute spawn "amixer set Master toggle"
 riverctl map normal None XF86MonBrightnessUp spawn "brightnessctl set +5%"
 riverctl map normal None XF86MonBrightnessDown spawn "brightnessctl set 5%-"
 
-# --- Screenshots (REEMPLAZO DE MAIM) ---
-# Necesitas instalar: grim y slurp (sudo pacman -S grim slurp)
-# Screenshot ventana activa (aprox):
+# --- Capturas de Pantalla (grim + slurp) ---
 riverctl map normal $mod P spawn 'grim -g "$(slurp)" - | wl-copy'
-# Screenshot full:
 riverctl map normal $mod+Shift P spawn 'grim - | wl-copy'
 
-# --- Reglas (Rules) ---
-# float-alacritty -> float
-riverctl rule-add -app-id "float-alacritty" float
-
-# --- Control Multi-Monitor (Estilo DWM) ---
-
-# Mover el foco entre monitores (Mod + [ y Mod + ])
-# DWM: focusmon -1 / +1
-riverctl map normal $mod BracketLeft focus-output previous
-riverctl map normal $mod BracketRight focus-output next
-
-# Mover la ventana al monitor anterior/siguiente (Mod + Shift + { y })
-# DWM: tagmon -1 / +1
-riverctl map normal $mod+Shift BracketLeft spawn "~/.config/river/scripts/send-to-output.sh previous"
-riverctl map normal $mod+Shift BracketRight spawn "~/.config/river/scripts/send-to-output.sh next"
-# Toggle Waybar (Ocultar/Mostrar) con Ctrl + Alt + W
-# Mod1 = Alt
+# --- UI y Elementos Visuales ---
 riverctl map normal Control+Mod1 W spawn "pkill -SIGUSR1 waybar"
 
-riverctl map normal Mod4 0 set-focused-tags 4294967295
-
-riverctl map normal Mod4+Shift 0 set-view-tags 4294967295
-# --- Comportamiento del Mouse ---
-
-# 1. Focus Follows Mouse (Sloppy Focus)
-# Al mover el mouse sobre una ventana, esta recibe el foco sin hacer clic.
-riverctl focus-follows-cursor normal
-
-# 2. Cursor Warp (Teletransportación del mouse)
-# Mueve el cursor al centro de la ventana cuando cambias de foco con el teclado (Mod+J/K)
-riverctl set-cursor-warp on-focus-change
-
-# Mueve el cursor al centro del monitor cuando cambias de monitor con el teclado (Mod+Shift+,/.)
-riverctl set-cursor-warp on-output-change
-
-# --- Arranque automático ---
-# Wallpaper (recomiendo swww o swaybg en lugar de feh/xwallpaper)
-# riverctl spawn "swaybg -i /ruta/a/tu/wallpaper.jpg -m fill"
-# Barra de estado (Waybar es lo más cercano a dwmblocks visualmente si se configura bien)
-if ! pgrep -x "waybar" > /dev/null; then
-    riverctl spawn "waybar"
-else 
-    riverctl spawn "killall -SIGUSR2 waybar"
-fi
-
-if ! pgrep -x "waybar" > /dev/null; then
-    riverctl spawn swaync
-else 
-    riverctl spawn "killall swaync && swaync"
-fi
-
-riverctl spawn swww-daemon
-
-#riverctl spawn dunst
-# Dile a River que no gestione a wofi como una ventana de tiling
+# --- Reglas de Ventanas ---
+riverctl rule-add -app-id "float-alacritty" float
 riverctl rule-add -app-id 'wofi' float
-
