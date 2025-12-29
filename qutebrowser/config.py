@@ -9,7 +9,7 @@ import os
 # Importamos los colores generados por Matugen
 sys.path.append(os.path.dirname(__file__))
 try:
-    from colors import matugen_colors_qutebrowser as matugen
+    from matugen_colors_qutebrowser import colors as matugen
 except ImportError:
     # Colores de respaldo por si Matugen no ha corrido
     matugen = {"background": "#000000", "foreground": "#ffffff"}
