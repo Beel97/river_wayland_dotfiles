@@ -7,3 +7,6 @@ qutebrowser/qsettings
 qutebrowser/userscripts
 qutebrowser/quickmarks
 qutebrowser/autoconfig.yml
+
+# Qutebrowser private config
+qutebrowser/private.py
