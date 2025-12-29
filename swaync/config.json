@@ -65,15 +65,11 @@
       "image-size": 96,
       "image-radius": 12
     },
-    "volume": {
-      "label": "󰕾",
-        "show-per-app": true
-    },
     "buttons-grid": {
       "actions": [
         {
-          "label": " ",
-          "command": "amixer set Master toggle"
+          "label": "",
+          "command": "amixer set Master toggle && pkill -RTMIN+8 waybar"
         },
         {
           "label": "",
@@ -93,6 +89,10 @@
         }
         
       ]
+    },
+    "notifications": {
+      "text": "Notifications",
+      "clear-all-button": true
     }
   }
 }

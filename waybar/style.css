@@ -65,11 +65,12 @@
 /* Aplicamos el estilo de píldora a cada módulo individual */
 #clock,
 #battery,
-#pulseaudio,
+#custom-volume,
 #network,
 #cpu,
 #memory,
 #custom-music,
+#custom-swaync,
 #tray {
     background-color: @surface_container_high;
     color: @inverse_surface;
@@ -83,4 +84,13 @@
 #clock {
     color: @primary;
     font-weight: bold;
+}
+
+/* Estilo para notificaciones pendientes */
+#custom-swaync.has-notifications {
+    color: @error;
+}
+
+#custom-volume.muted {
+    color: @warning;
 }
