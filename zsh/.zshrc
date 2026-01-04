@@ -154,8 +154,3 @@ if [ -d "$FNM_PATH" ]; then
   export PATH="$FNM_PATH:$PATH"
   eval "`fnm env`"
 fi
-
-## Scripts de uso comun para wayland
-# Comentar o modificar linea si la usas o no
-export PATH="$HOME/common_scripts/:$PATH"
-export WALLPAPERS_DIR="$HOME/Pictures/wallpapers"
