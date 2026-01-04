@@ -102,10 +102,10 @@ expr_postfix = "}}"
 alacritty = {input_path = 'templates/alacritty.toml', output_path = '~/.config/alacritty/matugen_colors_alacritty.toml'}
 starship = {input_path = 'templates/starship.toml', output_path = '~/.config/starship/starship.toml'}
 waybar = {input_path = 'templates/waybar.css', output_path = '~/.config/waybar/matugen_colors_waybar.css'}
-river = {input_path = 'templates/river-colors', output_path = '~/.config/river/matugen_colors_river.sh',post_hook="~/.config/river/init"}
 wofi = {input_path = 'templates/wofi.css', output_path = '~/.config/wofi/style.css'}
 qutebrowser = {input_path = 'templates/qutebrowser-colors.py', output_path = '~/.config/qutebrowser/matugen_colors_qutebrowser.py', post_hook="pgrep -x qutebrowser && qutebrowser :config-source"}
 superfile = {input_path = 'templates/superfile.toml', output_path = '~/.config/superfile/theme/matugen_colors_superfile.toml'}
+river = {input_path = 'templates/river-colors', output_path = '~/.config/river/matugen_colors_river.sh',post_hook="~/.config/river/init"}
 #dunst = {input_path = 'templates/dunstrc', output_path = '~/.config/dunst/dunstrc',post_command = "killall dunst; dunst &"}
 
 #zellij = {input_path = 'templates/zellij-theme.kdl', output_path = '~/.config/zellij/themes/default.kdl'}

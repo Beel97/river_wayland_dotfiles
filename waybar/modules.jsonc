@@ -40,5 +40,15 @@
     "on-click": "amixer set Master toggle && pkill -RTMIN+8 waybar",
     "on-scroll-up": "amixer set Master 5%+ && pkill -RTMIN+8 waybar",
     "on-scroll-down": "amixer set Master 5%- && pkill -RTMIN+8 waybar"
+  },
+
+  // Módulo de red
+  "network": {
+    "interface-whitelist": ["wlan0", "eth0"],
+    "format-wifi": "  {essid} ({signalStrength}%)",
+    "format-ethernet": "  {ifname}",
+    "format-disconnected": "⚠  Disconnected",
+    "tooltip-format": "{ifname} {ipaddr}",
+    "max-length": 50
   }
 }

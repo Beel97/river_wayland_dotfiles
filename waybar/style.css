@@ -92,5 +92,6 @@
 }
 
 #custom-volume.muted {
-    color: @warning;
+    background-color: @error;
+    color: @on_error; /* Forzamos un color de texto negro para legibilidad */
 }

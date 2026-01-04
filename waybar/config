@@ -14,11 +14,12 @@
     "river/tags"
   ],
   "modules-center": [
-    "custom/swaync"
+    "clock",
   ],
   "modules-right": [
     "custom/volume",
-    "clock",
-    "battery"
+    "network",
+    "battery",
+    "custom/swaync"
   ]
 }

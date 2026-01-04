@@ -64,3 +64,6 @@ vim.keymap.set("n", "<leader>op", "<cmd>ObsidianPasteImg<CR>", { desc = "Paste i
 vim.keymap.set("n", "<leader>ow", "<cmd>ObsidianWorkspace<CR>", { desc = "Switch workspace" })
 vim.keymap.set("n", "<leader>or", "<cmd>ObsidianRename<CR>", { desc = "Rename note" })
 vim.keymap.set("n", "<leader>ox", "<cmd>ObsidianToggleCheckbox<CR>", { desc = "Toggle checkbox" })
+
+-- themery
+vim.keymap.set("n", "<leader>ut", "<cmd>Themery<CR>", { desc = "Themery" })
