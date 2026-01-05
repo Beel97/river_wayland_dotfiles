@@ -108,5 +108,7 @@ superfile = {input_path = 'templates/superfile.toml', output_path = '~/.config/s
 river = {input_path = 'templates/river-colors', output_path = '~/.config/river/matugen_colors_river.sh',post_hook="~/.config/river/init"}
 #dunst = {input_path = 'templates/dunstrc', output_path = '~/.config/dunst/dunstrc',post_command = "killall dunst; dunst &"}
 
-#zellij = {input_path = 'templates/zellij-theme.kdl', output_path = '~/.config/zellij/themes/default.kdl'}
+zellij_theme = {input_path = 'templates/zellij-theme.kdl', output_path = '~/.config/zellij/themes/matugen_colors_zellij.kdl'}
+zellij_layout = {input_path = 'templates/zellij-compact.kdl', output_path = '~/.config/zellij/layouts/matugen_colors_zellij_layout.kdl'}
+
 

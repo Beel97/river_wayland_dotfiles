@@ -1,0 +1,49 @@
+layout {
+    pane size=1 borderless=true {
+        plugin location="file:~/.config/zellij/plugins/zjstatus.wasm"{
+          format_left   "{mode} #[fg={{colors.secondary.default.hex}},bold]{session}"
+          format_center "{tabs}"
+          format_right  "{command_git_branch} {datetime} {command_battery_hearts}"
+          format_space  ""
+          mode_normal        "#[fg={{colors.on_surface_variant.default.hex}},bold] NORMAL#[bg={{colors.surface_container_highest.default.hex}},fg={{colors.on_surface_variant.default.hex}}]"
+          mode_locked        "#[fg={{colors.on_secondary_container.default.hex}},bold] LOCKED ⛔#[bg={{colors.surface_container_highest.default.hex}},fg=#d6cef1]"
+          mode_resize        "#[fg={{colors.secondary.default.hex}},bold] RESIZE#[bg={{colors.surface_container_highest.default.hex}},fg=#d0bfff]"
+          mode_pane          "#[fg={{colors.tertiary.default.hex}},bold] PANE#[bg={{colors.surface_container_highest.default.hex}},fg=#cba6f7]"
+          mode_tab           "#[fg={{colors.tertiary.default.hex}},bold] TAB#[bg={{colors.surface_container_highest.default.hex}},fg=#cba6f7]"
+          mode_scroll        "#[fg={{colors.tertiary_container.default.hex}},bold] SCROLL#[bg={{colors.surface_container_highest.default.hex}},fg=#e5c3f7]"
+          mode_enter_search  "#[fg={{colors.tertiary.default.hex}},bold] ENT-SEARCH#[bg={{colors.surface_container_highest.default.hex}},fg=#e0b0ff]"
+          mode_search        "#[fg={{colors.tertiary.default.hex}},bold] SEARCH#[bg={{colors.surface_container_highest.default.hex}},fg=#e0b0ff]"
+          mode_rename_tab    "#[fg={{colors.on_surface_variant.default.hex}},bold] RENAME-TAB#[bg={{colors.surface_container_highest.default.hex}},fg={{colors.on_surface_variant.default.hex}}]"
+          mode_rename_pane   "#[fg={{colors.on_surface_variant.default.hex}},bold] RENAME-PANE#[bg={{colors.surface_container_highest.default.hex}},fg={{colors.on_surface_variant.default.hex}}]"
+          mode_session       "#[fg={{colors.tertiary.default.hex}},bold] SESSION#[bg={{colors.surface_container_highest.default.hex}},fg=#cba6f7]"
+          mode_move          "#[fg={{colors.secondary.default.hex}},bold] MOVE#[bg={{colors.surface_container_highest.default.hex}},fg=#d0bfff]"
+          mode_prompt        "#[fg={{colors.on_tertiary_container.default.hex}},bold] PROMPT#[bg={{colors.surface_container_highest.default.hex}},fg=#f5d0ea]"
+          mode_tmux          "#[fg={{colors.on_secondary.default.hex}},bold] TMUX#[bg={{colors.surface_container_highest.default.hex}},fg=#f8c8dc]"
+
+          //tabs
+          tab_normal   "#[fg={{colors.on_surface_variant.default.hex}}] {name} "
+          tab_active   "#[fg={{colors.on_primary.default.hex}},bold,italic] {name} "
+
+          //command_git_branch
+          command_git_branch_command     "git rev-parse --abbrev-ref HEAD"
+          command_git_branch_format      "#[fg={{colors.secondary.default.hex}}] {stdout} "
+          command_git_branch_interval    "10"
+          command_git_branch_rendermode  "static"
+
+          notification_format_unread           "#[fg={{colors.secondary.default.hex}},bg={{colors.surface_container_high.default.hex}},blink]  #[fg={{colors.secondary.default.hex}},bg={{colors.surface_container_high.default.hex}}] {message} "
+          notification_format_no_notifications "#[fg={{colors.secondary.default.hex}},bg={{colors.surface_container_high.default.hex}},dim]   "
+          notification_show_interval           "10"
+
+          //datetime
+          datetime        "#[fg={{colors.on_surface_variant.default.hex}},bold] {format} "
+          datetime_format "%A, %d %b %Y %H:%M"
+          datetime_timezone "America/Mexico_City"
+
+          command_battery_hearts_command     "sb-battery-hearts.sh"
+          command_battery_hearts_format      "{stdout} "
+          command_battery_hearts_interval    "30"
+
+      }
+    }
+    pane
+}
