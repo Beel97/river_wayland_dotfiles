@@ -91,7 +91,7 @@ c.fonts.tabs.unselected = "9pt monospace"
 # TABS
 # -------------------------------------------------------------------------
 
-c.tabs.show = "switching"
+c.tabs.show = "multiple"
 c.tabs.title.format = "{audio}{current_title}"
 c.tabs.padding = {"top": 0, "bottom": 0, "left": 0, "right": 0}
 c.tabs.indicator.width = 0  # No tab indicators
@@ -161,6 +161,9 @@ config.set("content.geolocation", False)
 config.set("content.webrtc_ip_handling_policy", "default-public-interface-only")
 config.set("content.cookies.accept", "all")
 config.set("content.cookies.store", True)
+c.content.headers.user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36"
+
+
 
 # -------------------------------------------------------------------------
 # CONTENT BLOCKING
