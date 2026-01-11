@@ -41,10 +41,10 @@ FILES_TO_LINK["river"]="$CONFIG_DIR/river"
 FILES_TO_LINK["waybar"]="$CONFIG_DIR/waybar"
 FILES_TO_LINK["wofi"]="$CONFIG_DIR/wofi"
 FILES_TO_LINK["superfile"]="$CONFIG_DIR/superfile"
-FILES_TO_LINK["dunst"]="$CONFIG_DIR/dunst"
 FILES_TO_LINK["satty"]="$CONFIG_DIR/satty"
 FILES_TO_LINK["swaync"]="$CONFIG_DIR/swaync"
-
+FILES_TO_LINK["kanshi"]="$CONFIG_DIR/kanshi"
+FILES_TO_LINK["opencode"]="$CONFIG_DIR/opencode"
 
 
 
