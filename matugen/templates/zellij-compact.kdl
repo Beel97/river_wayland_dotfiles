@@ -5,8 +5,8 @@ layout {
           format_center "{tabs}"
           format_right  "{command_git_branch} {datetime} {command_battery_hearts}"
           format_space  ""
-          mode_normal        "#[fg={{colors.on_surface_variant.default.hex}},bold] NORMAL#[bg={{colors.surface_container_highest.default.hex}},fg={{colors.on_surface_variant.default.hex}}]"
-          mode_locked        "#[fg={{colors.on_secondary_container.default.hex}},bold] LOCKED ⛔#[bg={{colors.surface_container_highest.default.hex}},fg=#d6cef1]"
+          mode_normal        "#[fg={{colors.primary.default.hex}},bold] NORMAL#[bg={{colors.primary_container.default.hex}},fg={{colors.primary_fixed.default.hex}}]"
+          mode_locked        "#[fg={{colors.on_error_container.default.hex}},bold] LOCKED ⛔#[bg={{colors.error_container.default.hex}},fg=#d6cef1]"
           mode_resize        "#[fg={{colors.secondary.default.hex}},bold] RESIZE#[bg={{colors.surface_container_highest.default.hex}},fg=#d0bfff]"
           mode_pane          "#[fg={{colors.tertiary.default.hex}},bold] PANE#[bg={{colors.surface_container_highest.default.hex}},fg=#cba6f7]"
           mode_tab           "#[fg={{colors.tertiary.default.hex}},bold] TAB#[bg={{colors.surface_container_highest.default.hex}},fg=#cba6f7]"
@@ -21,8 +21,8 @@ layout {
           mode_tmux          "#[fg={{colors.on_secondary.default.hex}},bold] TMUX#[bg={{colors.surface_container_highest.default.hex}},fg=#f8c8dc]"
 
           //tabs
-          tab_normal   "#[fg={{colors.on_surface_variant.default.hex}}] {name} "
-          tab_active   "#[fg={{colors.on_primary.default.hex}},bold,italic] {name} "
+          tab_normal   "#[fg={{colors.secondary.default.hex}}] {name} "
+          tab_active   "#[fg={{colors.tertiary.default.hex}},bold,italic] {name} "
 
           //command_git_branch
           command_git_branch_command     "git rev-parse --abbrev-ref HEAD"
