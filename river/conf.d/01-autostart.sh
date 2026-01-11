@@ -1,13 +1,19 @@
 #!/bin/sh
 
-# --- Aplicaciones al Inicio (Autostart) ---
-riverctl spawn swww-daemon
-riverctl spawn "rivertile -view-padding 5 -outer-padding 5"
+# --- Aplicaciones Esenciales ---
 
-if ! pgrep -x "waybar" > /dev/null; then
-    riverctl spawn "waybar"
-    riverctl spawn "swaync"
-else
-    riverctl spawn "killall -SIGUSR2 waybar"
-    riverctl spawn "killall swaync && swaync"
-fi
+pgrep -x kanshi >/dev/null || riverctl spawn kanshi
+
+pgrep -x swww-daemon >/dev/null || riverctl spawn swww-daemon
+
+pgrep -x rivertile >/dev/null || riverctl spawn "rivertile -view-padding 3 -outer-padding 5"
+
+# --- Barras y Notificaciones (Lógica Inversa: Recargar o Iniciar) ---
+
+pgrep -x waybar >/dev/null \
+    && riverctl spawn "killall -SIGUSR2 waybar" \
+    || riverctl spawn waybar
+
+pgrep -x swaync >/dev/null \
+    && riverctl spawn "swaync-client -R" \
+    || riverctl spawn swaync
