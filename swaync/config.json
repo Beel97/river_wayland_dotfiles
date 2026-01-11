@@ -85,7 +85,7 @@
         },
         {
           "label": "󰏘",
-          "command": "nwg-look"
+          "command": "alacritty --class float-alacritty -e 'wallpaper_setter'"
         }
         
       ]
