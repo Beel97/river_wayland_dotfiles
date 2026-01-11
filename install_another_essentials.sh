@@ -7,6 +7,7 @@
 # Paquetes del sistema (Nombres genéricos)
 NATIVE_PACKAGES=(
     "amixer"
+    "btop"
 )
 
 # ==============================================================================
@@ -81,7 +82,7 @@ install_native() {
 
 main() {
     check_root
-    update_system
+
 
     # 1. Nativos
     for pkg in "${NATIVE_PACKAGES[@]}"; do
