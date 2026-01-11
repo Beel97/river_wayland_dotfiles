@@ -1,0 +1,14 @@
+profile docked {
+    # Pantalla Izquierda
+    output HDMI-A-2 mode 1920x1080 position 0,0
+
+    # Pantalla Central
+    output HDMI-A-1 mode 1920x1080 position 1920,0
+
+    # Pantalla Derecha (Laptop)
+    output eDP-1 mode 1920x1080 position 3840,0
+}
+
+profile undocked {
+    output eDP-1 enable
+}
