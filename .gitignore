@@ -10,3 +10,6 @@ qutebrowser/autoconfig.yml
 
 # Qutebrowser private config
 qutebrowser/private.py
+
+# private
+*.local
