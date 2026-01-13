@@ -8,16 +8,13 @@
         "baseURL": "http://localhost:11434/v1"
       },
       "models": {
-        "qwen-opencode": {
-          "name": "qwen-opencode"
+        "ministral-oc": {
+          "name": "ministral-oc"
         },
-        "gemaopencode:latest": {
-          "name": "gemma-opencode"
-        }
       }
     }
   },
-    "agent": {
+  "agent": {
     "primary": {
       "tools": {
         "shell": true,
