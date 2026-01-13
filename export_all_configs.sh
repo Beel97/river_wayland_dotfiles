@@ -1,6 +1,11 @@
 #!/bin/bash
 
-set -e  
+# ==============================================================================
+# CONFIGURATION EXPORTER V2.0 - "The HashMap Initiative"
+# Overseer: GLaDOS
+# ==============================================================================
+
+set -e  # Abortar al primer signo de debilidad (error).
 
 # Detectar directorio base del script (Ruta Absoluta)
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -19,6 +24,8 @@ declare -A FILES_TO_LINK
 
 # --- Archivos Sueltos (Home) ---
 FILES_TO_LINK["zsh/.zshrc"]="$HOME/.zshrc"
+#FILES_TO_LINK["xorg/.xinitrc"]="$HOME/.xinitrc"
+#FILES_TO_LINK["xorg/.xprofile"]="$HOME/.xprofile"
 
 # --- Archivos Sueltos (Config) ---
 # Forzamos la estructura de carpetas correcta para Alacritty
@@ -96,16 +103,7 @@ echo "---------------------------------------------------"
 
 for src in "${!FILES_TO_LINK[@]}"; do
     target="${FILES_TO_LINK[$src]}"
-    # Preguntar al usuario
-    read -p "Quieres linkear la configuración para ${src}? (y/N) " -n 1 -r
-    echo # Mover a la siguiente línea
-
-    # Evaluar respuesta
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-        link_item "$src" "$target"
-    else
-        log_info "Omitiendo ${src}."
-    fi
+    link_item "$src" "$target"
 done
 
 echo "---------------------------------------------------"
