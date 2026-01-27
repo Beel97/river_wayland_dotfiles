@@ -120,7 +120,7 @@ c.completion.open_categories = [
     "history",
     "filesystem",
 ]
-c.auto_save.session = True  # Save tabs on quit/restart
+c.auto_save.session = False  # Save tabs on quit/restart
 
 # -------------------------------------------------------------------------
 # BEHAVIOR
