@@ -8,3 +8,6 @@ riverctl map normal $mod Up send-layout-cmd rivertile "main-location top"
 riverctl map normal $mod Right send-layout-cmd rivertile "main-location right"
 riverctl map normal $mod Down send-layout-cmd rivertile "main-location bottom"
 riverctl map normal $mod Left send-layout-cmd rivertile "main-location left"
+
+riverctl map normal $mod+Shift H resize horizontal 70
+riverctl map normal $mod+Shift L resize vertical 70
