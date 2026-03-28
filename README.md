@@ -53,6 +53,36 @@ Notarás que algunas configuraciones hacen referencia a archivos que no están e
 
 Esta es una buena práctica para separar tus configuraciones públicas de las privadas. Puedes crear estos archivos tú mismo para añadir tus propias configuraciones personales sin que se rastreen en git.
 
+## 🔄 Migración Rápida a Nuevo Laptop
+
+Si vas a cambiar de laptop, hay un script todo-en-uno que se encarga de todo:
+
+```bash
+# En el laptop VIEJO — genera un snapshot del estado actual:
+./migrate.sh --snapshot-only
+
+# En el laptop NUEVO — migración completa:
+git clone <tu-repo> ~/.dotfiles
+cd ~/.dotfiles
+./migrate.sh
+```
+
+El script `migrate.sh` soporta varias flags:
+
+| Flag               | Descripción                                      |
+| ------------------ | ------------------------------------------------ |
+| `--skip-packages`  | Omite instalación de paquetes                    |
+| `--skip-links`     | Omite creación de symlinks                       |
+| `--skip-shell`     | Omite configuración de shell                     |
+| `--dry-run`        | Solo muestra qué haría sin ejecutar nada         |
+| `--snapshot-only`  | Solo genera snapshot del sistema actual           |
+
+Los snapshots se guardan en `.snapshots/` e incluyen listas de paquetes pacman, AUR, cargo, servicios systemd, fuentes y más.
+
+## 🤖 Para Agentes de IA
+
+Si eres un agente de IA o colaborador, consulta [`AGENT.md`](./AGENT.md) para una descripción completa del entorno, convenciones, estructura y herramientas de este repositorio.
+
 ## ⚠️ Aviso
 
 Estos son mis dotfiles personales. Están altamente personalizados para mi flujo de trabajo y mi máquina. Siéntete libre de usarlos, pero ten en cuenta que probablemente necesitarás hacer ajustes para que se adapten a tus propias necesidades.
