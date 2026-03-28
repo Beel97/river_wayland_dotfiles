@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # --- Controles Básicos del Gestor ---
-riverctl map normal $mod T spawn "$term"
+riverctl map normal $mod T spawn "$term -e zellij"
 riverctl map normal $mod Q close
 riverctl map normal $mod+Shift C exit
 
