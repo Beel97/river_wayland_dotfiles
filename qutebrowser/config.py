@@ -66,7 +66,7 @@ c.colors.messages.info.bg = matugen["background"]
 c.colors.messages.info.fg = matugen["foreground"]
 
 # Dark Mode for Webpages
-c.colors.webpage.darkmode.enabled = True
+c.colors.webpage.darkmode.enabled = False
 c.colors.webpage.darkmode.algorithm = "lightness-cielab"
 c.colors.webpage.darkmode.policy.images = "never"
 
