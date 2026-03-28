@@ -13,3 +13,6 @@ qutebrowser/private.py
 
 # private
 *.local
+
+# system snapshots (machine-specific)
+.snapshots/
