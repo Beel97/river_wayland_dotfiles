@@ -23,6 +23,7 @@ fi
 alias dcu="docker compose up"
 alias dcd="docker compose down"
 alias ls="eza --icons=always"
+alias n="nvim"
 
 ##Hist
 HISTSIZE=10000
