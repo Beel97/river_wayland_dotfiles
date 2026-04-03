@@ -4,7 +4,8 @@
 
 pgrep -x kanshi >/dev/null || riverctl spawn kanshi
 
-pgrep -x swww-daemon >/dev/null || riverctl spawn swww-daemon
+# pgrep -x swww-daemon >/dev/null || riverctl spawn swww-daemon
+pgrep -x awww-daemon >/dev/null || riverctl spawn awww-daemon
 
 pgrep -x rivertile >/dev/null || riverctl spawn "rivertile -view-padding 3 -outer-padding 5"
 

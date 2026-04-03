@@ -9,4 +9,8 @@ riverctl map normal Control+Mod1 W spawn "pkill -SIGUSR1 waybar"
 riverctl map normal $mod N spawn "swaync-client -t -sw"
 
 # -- wallpaper --
-riverctl map normal $mod+Shift W spawn "alacritty --class float-alacritty -e 'wallpaper_setter'"
+riverctl map normal $mod+Shift W spawn "$term --class float-alacritty -e 'wallpaper_setter'"
+
+# -- file --
+riverctl map normal $mod E spawn "$file_explorer"
+
