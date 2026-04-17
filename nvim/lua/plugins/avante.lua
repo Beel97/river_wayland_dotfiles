@@ -16,7 +16,7 @@ return {
         __inherited_from = "openai",
         api_key_name = "",
         endpoint = "http://127.0.0.1:11434/v1",
-        model = "qwen3.5:4b",
+        model = "qwen3.5:2b",
         temperature = 0,
         max_tokens = 4096,
       },
